@@ -1,0 +1,6 @@
+.DS_Store
+cookbooks/.DS_Store
+cookbooks/composer/.DS_Store
+cookbooks/epel/.DS_Store
+cookbooks/laravel/.DS_Store
+cookbooks/npm/.DS_Store

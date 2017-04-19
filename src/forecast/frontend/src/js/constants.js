@@ -1,0 +1,3 @@
+export const SEARCH = 'SEARCH';
+export const SEARCH_NOT_FOUND = 'SEARCH_NOT_FOUND';
+export const REGISTER_TOKEN = 'REGISTER_TOKEN';

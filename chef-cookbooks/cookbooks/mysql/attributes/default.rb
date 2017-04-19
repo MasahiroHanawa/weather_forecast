@@ -1,0 +1,6 @@
+default['mysql']['username'] = 'username'
+default['mysql']['password'] = 'password'
+default['mysql']['database']['dev'] = 'weather_forecast_dev'
+default['mysql']['database']['stg'] = 'weather_forecast_stg'
+default['mysql']['database']['prod'] = 'weather_forecast_prod'
+default['mysql']['database']['test'] = 'weather_forecast_test'
