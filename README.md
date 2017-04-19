@@ -49,4 +49,4 @@ $ [vagrant@localhost forecast] php artisan migrate --seed
 
 ## Author
 
-[MasahiroHanawa](https://github.com/tcnksm)
+[MasahiroHanawa](https://github.com/MasahiroHanawa)
