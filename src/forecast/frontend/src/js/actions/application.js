@@ -1,8 +1,8 @@
 import { REGISTER_TOKEN } from '../constants';
 
-export function registerToken() {
+export default function registerToken() {
   return {
-    type: REGISTER_TOKEN
+    type: REGISTER_TOKEN,
   };
 }
 

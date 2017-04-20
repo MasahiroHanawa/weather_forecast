@@ -2,32 +2,31 @@ import { SEARCH, SEARCH_NOT_FOUND } from '../constants';
 import apiClient from '../utlis/api';
 import forecastApiClient from '../utlis/forecastApi';
 
-export function search(token) {
-  let data = null;
-  return dispatch => {
-    apiClient().get('/api/v1/city/?token=' + token)
-      .then((response) => {
-        forecastApiClient().get('/data/2.5/forecast/daily?id=' + response.data.data.city_id + '&units=metric&cnt=6&appid=' + APP_ID)
-          .then((response) => {
+export default function search(token) {
+  return (dispatch) => {
+    apiClient().get(`/api/v1/city/?token=${token}`)
+      .then((apiResponse) => {
+        forecastApiClient().get(`/data/2.5/forecast/daily?id=${apiResponse.data.data.city_id}&units=metric&cnt=6&appid=${APP_ID}`)
+          .then((forecastApiResponse) => {
             dispatch({
               type: SEARCH,
-              forecastData: response.data
+              forecastData: forecastApiResponse.data,
             });
           })
-          .catch((response) => {
+          .catch((forecastApiResponse) => {
             dispatch({
               type: SEARCH_NOT_FOUND,
-              forecastData: response.data
+              forecastData: forecastApiResponse.data,
             });
-            console.log(response);
+            console.log(forecastApiResponse);
           });
       })
-      .catch((response) => {
+      .catch((apiResponse) => {
         dispatch({
           type: SEARCH_NOT_FOUND,
-          forecastData: response.data
+          forecastData: apiResponse.data,
         });
-        console.log(response);
+        console.log(apiResponse);
       });
   };
 }

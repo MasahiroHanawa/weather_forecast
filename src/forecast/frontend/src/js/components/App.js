@@ -2,19 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 export class App extends React.Component {
-  constructor (props, context) {
+  constructor(props, context) {
     super(props, context);
     this.state = {
-      isMenuActive: false
+      isMenuActive: false,
     };
   }
-  render () {
+  render() {
     return (
       <div>
         <div id="forecastHeader">{this.props.children}</div>
       </div>
     );
-  };
+  }
 }
+
+App.propTypes = {
+  children: React.PropTypes.object,
+};
 
 export default connect()(App);
