@@ -10,14 +10,14 @@ end
 execute "move composer" do
   user "root"
   command <<-EOL
-    mv /home/vagrant/composer.phar /usr/local/bin/composer
+    mv /home/masahirohanawa/composer.phar /usr/local/bin/composer
   EOL
 end
 
 execute "permission" do
   user "root"
   command <<-EOL
-    chown vagrant:vagrant /usr/local/bin/composer
+    chown masahirohanawa:masahirohanawa /usr/local/bin/composer
   EOL
 end
 

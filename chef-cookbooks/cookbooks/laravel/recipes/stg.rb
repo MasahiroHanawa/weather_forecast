@@ -9,13 +9,6 @@
 execute "permission" do
   user "root"
   command <<-EOL
-    chown vagrant:vagrant /var/www/html
+    chown masahirohanawa:masahirohanawa /var/www/html
   EOL
-end
-
-
-template "/etc/php.d/xdebug.ini" do
-  owner "root"
-  group "root"
-  mode "0644"
 end

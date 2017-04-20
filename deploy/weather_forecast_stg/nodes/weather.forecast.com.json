@@ -1,0 +1,19 @@
+{
+  "run_list": [
+    "recipe[yum]",
+    "recipe[nginx::stg]",
+    "recipe[epel]",
+    "recipe[php]",
+    "recipe[php-fpm]",
+    "recipe[node]",
+    "recipe[mysql]",
+    "recipe[mysql::createdb]",
+    "recipe[git]",
+    "recipe[composer]",
+    "recipe[laravel::stg]",
+    "recipe[npm::stg]"
+  ],
+  "automatic": {
+    "ipaddress": "weather.forecast.com"
+  }
+}
