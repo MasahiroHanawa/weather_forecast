@@ -1,6 +1,3 @@
-import { createDevTools } from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
@@ -12,20 +9,19 @@ import * as storage from './persistence/storage';
 import randomToken from './utlis/random';
 import getOfBeforeAfterDays from './utlis/beforAfterDays';
 import * as reducers from './reducers';
-import createLogger from 'redux-logger';
-import style from './css/style.css';
 import {
   App,
-  Home
+  Home,
 } from './components';
+import style from './css/style.css';
 
 const reducer = combineReducers({
   ...reducers,
-  routing: routerReducer
+  routing: routerReducer,
 });
 
-let dt = new Date();
-let beforeDay = getOfBeforeAfterDays(dt, 1);
+const dt = new Date();
+const beforeDay = getOfBeforeAfterDays(dt, 1);
 
 if (!storage.get('token') || storage.get('created_at') > beforeDay) {
   storage.put('token', randomToken());
@@ -35,15 +31,9 @@ if (!storage.get('token') || storage.get('created_at') > beforeDay) {
 const initialState = {
   application: {
     token: storage.get('token'),
-    createdAt: storage.get('created_at')
-  }
+    createdAt: storage.get('created_at'),
+  },
 };
-
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
-    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-  </DockMonitor>
-);
 
 const store = createStore(
   reducer,
@@ -51,10 +41,8 @@ const store = createStore(
   compose(
     applyMiddleware(
       thunk,
-      createLogger
     ),
-    DevTools.instrument()
-  )
+  ),
 );
 const history = syncHistoryWithStore(browserHistory, store);
 

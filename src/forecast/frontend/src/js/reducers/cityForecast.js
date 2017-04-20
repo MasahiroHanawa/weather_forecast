@@ -6,7 +6,7 @@ const initialState = {
   country: null,
   coord: {
     lon: null,
-    lat: null
+    lat: null,
   },
   cnt: null,
   cod: null,
@@ -14,50 +14,56 @@ const initialState = {
   result: false,
   chartData: {
     labels: [],
-    datasets: [{
-        label: "Max temperature",
+    datasets: [
+      {
+        label: 'Max temperature',
         fill: false,
         lineTension: 0.1,
-        strokeColor : "rgba(255, 0, 0, 0.5)",
-        fillColor : "rgba(255,255,255,0)",
-        pointColor : "rgba(255, 0, 0, 1)",
-        pointStrokeColor : "rgba(255, 0, 0, 1)",
+        strokeColor: 'rgba(255, 0, 0, 0.5)',
+        fillColor: 'rgba(255,255,255,0)',
+        pointColor: 'rgba(255, 0, 0, 1)',
+        pointStrokeColor: 'rgba(255, 0, 0, 1)',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: []
+        data: [],
       },
       {
-        label: "Min temperature",
+        label: 'Min temperature',
         fill: false,
         lineTension: 0.1,
-        strokeColor : "rgba(0, 0, 255, 0.3)",
-        fillColor : "rgba(255,255,255,0)",
-        pointColor : "rgba(0, 0, 255, 0.8)",
-        pointStrokeColor : "rgba(0, 0, 255, 0.8)",
+        strokeColor: 'rgba(0, 0, 255, 0.3)',
+        fillColor: 'rgba(255,255,255,0)',
+        pointColor: 'rgba(0, 0, 255, 0.8)',
+        pointStrokeColor: 'rgba(0, 0, 255, 0.8)',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: []
-      }
-    ]
-  }
+        data: [],
+      },
+    ],
+  },
 };
 
 export default function search(state = initialState, action) {
-  if(action.type === SEARCH) {
-    console.log(action.forecastData);
-    console.log(state);
-    console.log(state.chartData.datasets[0].fillColor);
-    var weekDayList = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ] ;
+  if (action.type === SEARCH) {
+    const weekDayList = [
+      'Sun',
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+    ];
     let dt = null;
-    let labels = [];
-    let maxTemp = [];
-    let minTemp = [];
+    const labels = [];
+    const maxTemp = [];
+    const minTemp = [];
     Object.keys(action.forecastData.list).forEach((key) => {
       dt = new Date(action.forecastData.list[key].dt * 1000);
       labels.push(weekDayList[dt.getDay()]);
@@ -71,8 +77,9 @@ export default function search(state = initialState, action) {
       cnt: action.forecastData.cnt,
       cod: action.forecastData.cod,
       list: action.forecastData.list,
+      result: true,
       chartData: {
-        labels: labels,
+        labels,
         datasets: [
           {
             label: state.chartData.datasets[0].label,
@@ -87,7 +94,7 @@ export default function search(state = initialState, action) {
             pointHoverBorderWidth: state.chartData.datasets[0].pointHoverBorderWidth,
             pointRadius: state.chartData.datasets[0].pointRadius,
             pointHitRadius: state.chartData.datasets[0].pointHitRadius,
-            data: maxTemp
+            data: maxTemp,
           },
           {
             label: state.chartData.datasets[1].label,
@@ -102,14 +109,14 @@ export default function search(state = initialState, action) {
             pointHoverBorderWidth: state.chartData.datasets[1].pointHoverBorderWidth,
             pointRadius: state.chartData.datasets[1].pointRadius,
             pointHitRadius: state.chartData.datasets[1].pointHitRadius,
-            data: minTemp
-          }
-        ]
-      }
+            data: minTemp,
+          },
+        ],
+      },
     };
   } else if (action.type === SEARCH_NOT_FOUND) {
     return {
-      result: true
+      result: true,
     };
   }
   return state;

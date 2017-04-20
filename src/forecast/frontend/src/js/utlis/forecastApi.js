@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const forecastApiClient = () => {
-  return axios.create ( {
+  const apiInfo = axios.create({
     baseURL: FORECAST_API_URL,
-    timeout: 100000
+    timeout: 100000,
   });
+  return apiInfo;
 };
 
 export default forecastApiClient;
