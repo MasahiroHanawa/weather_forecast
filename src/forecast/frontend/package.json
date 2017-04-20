@@ -1,5 +1,5 @@
 {
-  "name": "search-store",
+  "name": "weather_forecast",
   "version": "0.0.1",
   "description": "this is symphony rest api study and make search store system",
   "main": "index.js",
@@ -28,7 +28,11 @@
     "redux-actions": "^2.0.1",
     "redux-logger": "^3.0.1",
     "redux-router": "~1.0.0-beta7",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "css-loader": "^0.23.1",
+    "cssnext-loader": "^1.0.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^2.3.3"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
