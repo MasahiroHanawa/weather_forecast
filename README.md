@@ -40,6 +40,10 @@ $ vagrant ssh
 ```
 
 ```/var/www/html/forecast
+$ [vagrant@localhost forecast] php artisan key:generate
+```
+
+```/var/www/html/forecast
 $ [vagrant@localhost forecast] php artisan migrate --seed
 ```
 
