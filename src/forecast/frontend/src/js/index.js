@@ -7,7 +7,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import * as storage from './persistence/storage';
 import randomToken from './utlis/random';
-import getOfBeforeAfterDays from './utlis/beforAfterDays';
+import getPastDays from './utlis/pastFutureDays';
 import * as reducers from './reducers';
 import {
   App,
@@ -15,17 +15,18 @@ import {
 } from './components';
 import style from './css/style.css';
 
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer,
-});
+const reducer = combineReducers(
+  Object.assign({}, reducers, {
+    routing: routerReducer,
+  }),
+);
 
-const dt = new Date();
-const beforeDay = getOfBeforeAfterDays(dt, 1);
+const dt = new Date().getTime();
+const pastDay = getPastDays(dt, 1);
 
-if (!storage.get('token') || storage.get('created_at') > beforeDay) {
+if (!storage.get('token') || storage.get('createdAt') > pastDay) {
   storage.put('token', randomToken());
-  storage.put('createdAt', new Date());
+  storage.put('createdAt', dt);
 }
 
 const initialState = {

@@ -8,7 +8,6 @@ import search from '../actions/cityForcast';
 export class Home extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.handleSearch = this.handleSearch.bind(this);
     this.state = {
       name: null,
     };
@@ -17,8 +16,7 @@ export class Home extends React.Component {
     this.props.search(this.props.application.token);
   }
 
-  handleSearch(evt) {
-    evt.preventDefault();
+  handleSearch() {
     this.props.search(this.props.application.token);
   }
   render() {
@@ -87,7 +85,7 @@ export class Home extends React.Component {
             searchbutton = (
               <div className="center-block forecastContainer">
                 <ButtonGroup className="pull-right searchButton">
-                  <Button bsStyle="default" onClick={this.handleSearch}>Search</Button>
+                  <Button bsStyle="default" onClick={e => this.handleSearch(e)}>Search</Button>
                 </ButtonGroup>
               </div>
             );
