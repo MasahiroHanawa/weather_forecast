@@ -1,5 +1,5 @@
 
-const getOfBeforeAfterDays = (dateObj, number) => {
+const getPastDays = (dateObj, number) => {
   let result = false;
   if (dateObj && dateObj.getTime && number && String(number).match(/^-?[0-9]+$/)) {
     result = new Date((dateObj.getTime() + Number(number)) * 24 * 60 * 60 * 1000);
@@ -7,4 +7,4 @@ const getOfBeforeAfterDays = (dateObj, number) => {
   return result;
 };
 
-export default getOfBeforeAfterDays;
+export default getPastDays;
